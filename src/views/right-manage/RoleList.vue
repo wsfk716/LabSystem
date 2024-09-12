@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-button type="primary">新建角色</el-button>
+    <el-button type="primary" @click="handleAddRole">新建角色</el-button>
     <el-table :data="tableData" stripe style="width: 100%" row-key="id">
       <!-- <el-table-column prop="roleName" label="角色名称" width="180" /> -->
       <el-table-column label="角色名称">
@@ -47,7 +47,7 @@
       </el-table-column>
     </el-table>
   </div>
-
+  <!-- ---------------------------------更新角色对话框------------------------- -->
   <el-dialog v-model="dialogVisible" title="更新角色" width="35%">
     <el-form
       ref="ruleFormRef"
@@ -78,6 +78,41 @@
       <div class="dialog-footer">
         <el-button @click="handleCancel">取消</el-button>
         <el-button type="primary" @click="submitForm"> 提交 </el-button>
+      </div>
+    </template>
+  </el-dialog>
+
+  <!-- ---------------------------------新建角色对话框------------------------- -->
+  <el-dialog v-model="AddDialogVisible" title="新建角色" width="35%">
+    <el-form
+      ref="AddFormRef"
+      style="width: 100%"
+      :model="AddForm"
+      :rules="rules"
+      label-width="auto"
+      class="demo-ruleForm"
+      status-icon
+    >
+      <el-form-item label="角色名称" prop="roleName">
+        <el-input v-model="AddForm.roleName" />
+      </el-form-item>
+      <el-form-item label="角色权限" prop="rights">
+        <el-tree
+          style="max-width: 600px"
+          :data="rightList"
+          :props="defaultProps"
+          :default-expand-all="true"
+          show-checkbox
+          node-key="path"
+          ref="treeRef"
+          check-strictly
+        />
+      </el-form-item>
+    </el-form>
+    <template #footer>
+      <div class="dialog-footer">
+        <el-button @click="handleAddCancel">取消</el-button>
+        <el-button type="primary" @click="submitAddForm"> 提交 </el-button>
       </div>
     </template>
   </el-dialog>
@@ -128,6 +163,8 @@ const renderContent = (h, { node, data, store }) => {
     h("span", null, node.label)
   );
 };
+
+// 更新按钮相关的内容-------------------------------------------------------
 const ruleFormRef = ref();
 const ruleForm = ref({
   roleName: "",
@@ -160,14 +197,14 @@ const handleUpdate = (item) => {
   });
 };
 
-// 取消按钮
+// 更新-----取消按钮
 const handleCancel = () => {
   console.log(currentItem.value.roleName);
   ruleForm.value.roleName = currentItem.value.roleName;
   dialogVisible.value = false;
 };
 
-// 提交按钮
+// 更新-----提交按钮
 const submitForm = async () => {
   await ruleFormRef.value.validate(async (valid) => {
     if (valid) {
@@ -186,11 +223,45 @@ const submitForm = async () => {
   });
 };
 
-// 删除按钮
+// 删除按钮-----------------------------------------------
 const handleDelete = async (item) => {
   await axios.delete(`/adminapi/roles/${item.id}`);
   dialogVisible.value = false;
   await getList();
+};
+
+// 新建角色相关的内容-------------------------------------------------------
+const AddFormRef = ref();
+const AddForm = ref({
+  roleName: "",
+});
+const AddDialogVisible = ref(false);
+
+const handleAddRole = () => {
+  AddDialogVisible.value = true;
+};
+
+const handleAddCancel = () => {
+  AddDialogVisible.value = false;
+  AddForm.value.roleName = "";
+};
+
+const submitAddForm = async () => {
+  await AddFormRef.value.validate(async (valid) => {
+    if (valid) {
+      // 提交表单数据
+      await axios.post(`/adminapi/roles`, {
+        roleName: AddForm.value.roleName,
+        rights: JSON.stringify(treeRef.value.getCheckedKeys()),
+      });
+      AddDialogVisible.value = false;
+      ElMessage.success("提交成功");
+      await getList();
+    } else {
+      console.log("error submit!");
+      return false;
+    }
+  });
 };
 </script>
 <style lang="scss" scoped>

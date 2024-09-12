@@ -70,6 +70,10 @@ import {
   OfficeBuilding,
   UploadFilled,
   User,
+  Avatar,
+  Menu,
+  CirclePlusFilled,
+  Promotion,
 } from "@element-plus/icons-vue";
 const tableData = ref([]);
 onMounted(() => {
@@ -89,6 +93,10 @@ const mapIcons = {
   OfficeBuilding,
   UploadFilled,
   User,
+  Avatar,
+  Menu,
+  CirclePlusFilled,
+  Promotion,
 };
 // 更新按钮
 const handleUpdate = (item) => {

@@ -57,6 +57,10 @@ import {
   OfficeBuilding,
   UploadFilled,
   User,
+  Menu,
+  Avatar,
+  CirclePlusFilled,
+  Promotion,
 } from "@element-plus/icons-vue";
 import { onMounted, ref } from "vue";
 import axios from "axios";
@@ -82,6 +86,10 @@ const mapIcons = {
   OfficeBuilding,
   UploadFilled,
   User,
+  Avatar,
+  Menu,
+  CirclePlusFilled,
+  Promotion,
 };
 
 const checkAuth = (path) => {

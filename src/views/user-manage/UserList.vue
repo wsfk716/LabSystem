@@ -2,12 +2,12 @@
   <div>
     <el-button type="primary" @click="handleAddUser">添加用户</el-button>
     <el-table :data="tableData" stripe style="width: 100%" row-key="id">
+      <el-table-column prop="username" label="用户名" width="180" />
       <el-table-column label="角色名称">
         <template #default="scope">
           <div>{{ scope.row.role.roleName }}</div>
         </template>
       </el-table-column>
-      <el-table-column prop="username" label="用户名" width="180" />
       <el-table-column label="操作">
         <template #default="scope">
           <el-button
