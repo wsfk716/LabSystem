@@ -75,7 +75,7 @@ onMounted(() => {
 const getList = async () => {
   const res = await axios.get("/adminapi/rights");
   dataList.value = res.data;
-  // console.log(res.data);
+  console.log(res.data);
 };
 
 // 图标映射

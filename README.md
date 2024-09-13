@@ -83,8 +83,7 @@ foreign key (roleId) references roles (id)
 CREATE TABLE LabType (
 id INT AUTO_INCREMENT PRIMARY KEY, -- 实验室类型的唯一标识
 name VARCHAR(255) NOT NULL, -- 实验室类型名称
-location VARCHAR(255), -- 实验室地址
-description VARCHAR(255) -- 实验室描述
+description VARCHAR(255) -- 类型描述
 );
 
 ## 学院表
