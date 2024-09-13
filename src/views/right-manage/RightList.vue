@@ -74,6 +74,7 @@ import {
   Menu,
   CirclePlusFilled,
   Promotion,
+  Setting,
 } from "@element-plus/icons-vue";
 const tableData = ref([]);
 onMounted(() => {
@@ -97,6 +98,7 @@ const mapIcons = {
   Menu,
   CirclePlusFilled,
   Promotion,
+  Setting,
 };
 // 更新按钮
 const handleUpdate = (item) => {

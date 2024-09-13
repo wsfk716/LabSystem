@@ -54,7 +54,7 @@
       </el-form>
       <template #footer>
         <div class="dialog-footer">
-          <el-button @click="addDialogVisible = false">取消</el-button>
+          <el-button @click="handleCancel">取消</el-button>
           <el-button type="primary" @click="addSubmitForm"> 确定 </el-button>
         </div>
       </template>
@@ -69,7 +69,7 @@ import { onMounted } from "vue";
 import { ref } from "vue";
 import axios from "axios";
 import { ElMessage } from "element-plus";
-import { collegeList, LabTypeList } from "../../utils/type";
+import { collegeList } from "../../utils/type";
 import { url } from "../../utils/BgUrlConfig";
 let scene, popup;
 onMounted(() => {
@@ -114,7 +114,21 @@ onMounted(() => {
     getLabList();
     scene.addLayer(imagelayer);
   });
+
+  getLabTypeList();
 });
+
+// 获取实验室类型列表
+const LabTypeList = ref([]);
+const getLabTypeList = async () => {
+  const res = await axios.get("/adminapi/labType");
+  LabTypeList.value = res.data.data.map((item) => {
+    return {
+      label: item.name,
+      value: item.id,
+    };
+  });
+};
 
 window.add_popup = (x, y) => {
   addDialogVisible.value = true;
@@ -174,6 +188,18 @@ const addSubmitForm = async () => {
   });
 };
 
+// 取消添加
+const handleCancel = () => {
+  addDialogVisible.value = false;
+  addForm.value = {
+    title: "",
+    capacity: "",
+    lab_type: "",
+    college_type: "",
+    x: 0,
+    y: 0,
+  };
+};
 // 获取实验室列表
 const LabList = ref([]);
 const getLabList = async () => {

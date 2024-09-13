@@ -112,10 +112,11 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import axios from "axios";
-import { LabTypeList, collegeList } from "../../utils/type";
+import { collegeList } from "../../utils/type";
 import LabMap from "../../components/lab-manage/LabMap.vue";
 const tableData = ref([]);
 onMounted(() => {
+  getLabTypeList();
   getList();
 });
 const getList = async () => {
@@ -126,15 +127,28 @@ const getList = async () => {
   });
 };
 
+const LabTypeList = ref([]);
+const getLabTypeList = async () => {
+  await axios.get("/adminapi/labType").then((res) => {
+    LabTypeList.value = res.data.data.map((item) => {
+      return {
+        label: item.name,
+        value: item.id,
+      };
+    });
+    // console.log(LabTypeList.value);
+  });
+};
+
 const college_method = (value) => {
   const res = collegeList.find((item) => item.value === value);
 
   return res.label;
 };
 const lab_method = (value) => {
-  const res = LabTypeList.find((item) => item.value === value);
-
-  return res.label;
+  const res = LabTypeList.value;
+  const result = res.find((item) => item.value === value);
+  return result.label;
 };
 
 // 更新实验室
@@ -180,7 +194,7 @@ const preDialogVisible = ref(false);
 const handleLocation = (item) => {
   preDialogVisible.value = true;
   currentItem.value = item;
-  console.log(currentItem.value);
+  // console.log(currentItem.value);
 };
 </script>
 <style lang="scss" scoped>

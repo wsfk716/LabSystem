@@ -8,7 +8,8 @@ import LabTypeList from "@/views/lab-manage/LabTypeList.vue";
 import AuditList from "@/views/book-manage/AuditList.vue";
 import BookList from "@/views/book-manage/BookList.vue";
 import AddBook from "@/views/book-manage/AddBook.vue";
-
+import CollegeList from "../views/set/CollegeList.vue";
+import ClassesList from "../views/set/ClassesList.vue";
 const routes = [
   {
     path: "/index",
@@ -49,6 +50,14 @@ const routes = [
   {
     path: "/lab-manage/LabTypeList",
     component: LabTypeList,
+  },
+  {
+    path: "/set/collegelist",
+    component: CollegeList,
+  },
+  {
+    path: "/set/classeslist",
+    component: ClassesList,
   },
 ];
 
