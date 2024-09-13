@@ -62,6 +62,7 @@ import {
   CirclePlusFilled,
   Promotion,
   Setting,
+  Aim,
 } from "@element-plus/icons-vue";
 import { onMounted, ref } from "vue";
 import axios from "axios";
@@ -92,6 +93,7 @@ const mapIcons = {
   CirclePlusFilled,
   Promotion,
   Setting,
+  Aim,
 };
 
 const checkAuth = (path) => {
