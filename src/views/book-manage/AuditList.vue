@@ -118,12 +118,12 @@ const preDialogVisible = ref(false);
 const handleLocation = (item) => {
   preDialogVisible.value = true;
   currentItem.value = item;
-  console.log(currentItem.value);
+  // console.log(currentItem.value);
 };
 
 // 批准 修改预约状态为1
 const handleAccess = (item) => {
-  console.log(item);
+  // console.log(item);
   axios
     .put(`/adminapi/books/${item.id}`, {
       book_state: 1,

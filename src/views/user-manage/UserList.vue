@@ -144,7 +144,7 @@ const RoleList = ref([]);
 const getRoleList = async () => {
   const res = await axios.get("/adminapi/roles");
   RoleList.value = res.data.data;
-  console.log(RoleList.value);
+  // console.log(RoleList.value);
 };
 
 // 更新按钮中，对话框相关的内容
@@ -163,7 +163,7 @@ const rules = ref({
 const currentItem = ref({});
 const ruleFormRef = ref();
 const handleUpdate = async (item) => {
-  console.log(item);
+  // console.log(item);
   dialogVisible.value = true;
   // 获取当前用户的信息
   ruleForm.value.username = item.username;

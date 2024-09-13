@@ -62,7 +62,7 @@ const submitForm = async (formEl) => {
   if (!formEl) return;
   await formEl.validate(async (valid, fields) => {
     if (valid) {
-      console.log(ruleForm);
+      // console.log(ruleForm);
       const res = await axios.post("/adminapi/users/login", ruleForm.value);
       if (res.data.code === 1) {
         ElMessage.success(res.data.message);

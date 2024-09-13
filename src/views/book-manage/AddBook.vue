@@ -164,7 +164,7 @@ const addTextLayer = (data) => {
   scene.addLayer(textlayer);
 
   textlayer.on("click", (e) => {
-    console.log(e);
+    // console.log(e);
     addDialogVisible.value = true;
     currentItem.value = e.feature;
   });
@@ -223,8 +223,8 @@ const clear = () => {
 // 日期选择改变
 const handleChangeDate = async (val) => {
   addForm.value.book_class = "";
-  console.log(val);
-  console.log(currentItem.value.id);
+  // console.log(val);
+  // console.log(currentItem.value.id);
   // 这里应该是获取当前的日期去后台查询,指定实验室的这一天的课节预约状况
   const res = await axios.post("/adminapi/books/select", {
     book_time: val,

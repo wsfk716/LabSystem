@@ -16,7 +16,7 @@ import { url } from "../../utils/BgUrlConfig";
 const props = defineProps(["x", "y", "t"]);
 let scene, popup;
 onMounted(() => {
-  console.log(props);
+  // console.log(props);
   scene = new Scene({
     id: "map",
     map: new Map({

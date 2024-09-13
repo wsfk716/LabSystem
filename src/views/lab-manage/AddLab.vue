@@ -97,7 +97,7 @@ onMounted(() => {
 
   // 给图片图层添加事件
   imagelayer.on("click", (e) => {
-    console.log(e);
+    // console.log(e);
     const { lng, lat } = e.lngLat;
     popup = new Popup({
       offsets: [0, 0],

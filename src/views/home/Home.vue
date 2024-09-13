@@ -95,7 +95,7 @@ const addTextLayer = (data) => {
 
   // 给图片图层添加事件
   textlayer.on("click", async (e) => {
-    console.log(e);
+    // console.log(e);
     ElMessage.success(e.feature.t);
     const res = await Promise.all([
       axios.get(`/adminapi/books?lab_id=${e.feature.id}&&book_state=${AUDIT}`),

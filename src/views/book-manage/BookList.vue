@@ -123,7 +123,7 @@ const preDialogVisible = ref(false);
 const handleLocation = (item) => {
   preDialogVisible.value = true;
   currentItem.value = item;
-  console.log(currentItem.value);
+  // console.log(currentItem.value);
 };
 
 const handleDelete = (item) => {
@@ -135,7 +135,7 @@ const handleDelete = (item) => {
 // 创建vue指令
 const vTeacher = {
   mounted(el) {
-    console.log(el);
+    // console.log(el);
     if (user.role.roleType !== TEACHER) {
       el.remove();
     }
@@ -144,7 +144,7 @@ const vTeacher = {
 
 const vAdmin = {
   mounted(el) {
-    console.log(el);
+    // console.log(el);
     if (user.role.roleType !== ADMIN) {
       el.remove();
     }

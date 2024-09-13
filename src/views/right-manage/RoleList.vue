@@ -177,7 +177,7 @@ const rules = {
 const treeRef = ref();
 // 更新按钮
 const handleUpdate = (item) => {
-  console.log(item);
+  // console.log(item);
   dialogVisible.value = true;
   ruleForm.value.roleName = item.roleName;
   currentItem.value = item;
@@ -199,7 +199,7 @@ const handleUpdate = (item) => {
 
 // 更新-----取消按钮
 const handleCancel = () => {
-  console.log(currentItem.value.roleName);
+  // console.log(currentItem.value.roleName);
   ruleForm.value.roleName = currentItem.value.roleName;
   dialogVisible.value = false;
 };

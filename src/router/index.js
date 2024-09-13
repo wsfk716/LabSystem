@@ -80,7 +80,7 @@ const ConfigRouter = () => {
   });
 
   // 打印路由的个数
-  console.log(router.getRoutes());
+  // console.log(router.getRoutes());
 };
 
 const checkPermission = (path) => {
