@@ -1,108 +1,59 @@
 # 实验室管理平台
 
-主要功能：
-主要功能： 登录：用户可以登录系统。
+此项目基于千峰教育的学习项目的基础进行二次开发，主要是用于学习巩固所学知识。项目包含最基本的一些功能同时引入的 ant-map 等新颖的可视化功能。
+
+## 技术架构
+
+前端： Vue3 + Vite5+ Element-plus
+后端： SpringBoot + Mybatis + MySql
+
+## 主要功能：
+
+登录：用户可以登录系统。
+
 用户管理：包括用户列表的查看和管理。
+
 权限管理：可以查看角色列表和权限列表，进行权限控制。
+
 实验室管理：包括实验室列表的查看和添加新实验室的功能。
+
 预约管理：包括审核列表、预约列表和预约实验室的功能。
+
 更新地图：可能是指更新实验室位置或布局的地图功能。
 
-# 数据表
+## 数据表
 
-## 预约表
+![table](public/ReadmeImage/table.png)
 
-create table books
-(
-id int auto_increment
-primary key,
-lab_id int default 0 null,
-book_time date null,
-book_class int default 0 null,
-book_reason varchar(100) not null,
-book_username varchar(20) not null,
-book_state int default 0 null
-)
+## 运行
 
-## 实验室表
+前端：
 
-create table labs
-(
-id int auto_increment
-primary key,
-title varchar(20) not null,
-capacity int default 0 null,
-lab_type int default 0 null,
-college_type int default 0 null,
-x int default 0 null,
-y int default 0 null
-)
+安装依赖： npm i install
 
-## 权限列表
+运行： npm run dev
 
-create table rights
-(
-id int auto_increment
-primary key,
-title varchar(20) not null,
-path varchar(100) not null,
-icon varchar(100) not null,
-parent_id int default 0 null,
-is_leaf tinyint default 0 null
-)
+后端：
 
-## 角色表
+后台创建数据库 lab_system, sql 文件所在地址：src/main/resources/lab_system.sql
 
-create table roles
-(
-id int auto_increment
-primary key,
-roleName varchar(20) not null,
-roleType int default 2 null,
-rights json not null
-)
+application.yaml 中修改数据库相关配置。
 
-## 用户表
+url username password
 
-create table users
-(
-id int auto_increment
-primary key,
-username varchar(20) not null,
-password varchar(20) not null,
-roleId int not null,
-is_default int default 0 null,
-constraint users_ibfk_1
-foreign key (roleId) references roles (id)
-)
+## 页面展示
 
-## 实验室类型表
-
--- 创建 LabType 表
--- 该表用于存储实验室类型的信息
-CREATE TABLE LabType (
-id INT AUTO_INCREMENT PRIMARY KEY, -- 实验室类型的唯一标识
-name VARCHAR(255) NOT NULL, -- 实验室类型名称
-description VARCHAR(255) -- 类型描述
-);
-
-## 学院表
-
--- 创建 Colleges 表
--- 该表用于存储学院的信息
-CREATE TABLE Colleges (
-id INT AUTO_INCREMENT PRIMARY KEY, -- 学院的唯一标识
-name VARCHAR(255) UNIQUE NOT NULL, -- 学院名称
-lab_counts INT NOT NULL -- 学院下的实验室数量
-);
-
-## 课节表
-
--- 创建 Classes 表
--- 该表用于存储课程的信息
-CREATE TABLE Classes (
-id INT AUTO_INCREMENT PRIMARY KEY, -- 课程的唯一标识
-name VARCHAR(255) NOT NULL, -- 课程名称
-start_time TIME NOT NULL, -- 课程开始时间
-end_time TIME NOT NULL -- 课程结束时间
-);
+登录页：
+![login](public/ReadmeImage/login.png)
+首页：
+![index](public/ReadmeImage/index.png)
+角色列表：
+![role](public/ReadmeImage/role.png)
+用户列表：
+![user](public/ReadmeImage/user.png)
+权限列表：
+![right](public/ReadmeImage/right.png)
+预约：
+![book](public/ReadmeImage/book.png)
+实验室：
+![lab](public/ReadmeImage/lab.png)
